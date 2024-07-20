@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Purchase Details</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url(https://www.pgclick.com/file_uploads/pg_photos/1000/cg1r0_1695046683.jpeg) no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container {
+    background-color: rgba(91, 141, 207, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #E8E8E8;
+    max-width: 500px;
+    width: 100%; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+        h1 {
+            text-align: center;
+            color: whitesmoke;
+        }
+        form div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: whitesmoke;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Purchase Details</h1>
+        <form id="purchaseForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div>
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName">
+            </div>
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity">
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01">
+            </div>
+            <button type="button" onclick="submitPurchase()">Submit</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        async function submitPurchase() {
+            const data = {
+                username: document.getElementById('username').value,
+                productName: document.getElementById('productName').value,
+                quantity: parseInt(document.getElementById('quantity').value, 10),
+                price: parseFloat(document.getElementById('price').value),
+            };
+
+            try {
+                const response = await fetch('/api/purchases', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        document.getElementById('message').textContent = 'Bad Request: Please ensure all fields are filled out correctly.';
+                    } else {
+                        document.getElementById('message').textContent = 'Error: ' + response.statusText;
+                    }
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                document.getElementById('message').textContent = 'Success: ' + result.message;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('message').textContent = 'Failed to submit data.';
+            }
+        }
+    </script>
+</body>
+</html>

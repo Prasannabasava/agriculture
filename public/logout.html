@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: arial,sans-serif;
+    background: url(https://www.pgclick.com/file_uploads/pg_photos/1000/cg1r0_1695046683.jpeg ) no-repeat center center fixed;  
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+}
+
+        h1 {
+            text-align: center;
+            color: whitesmoke;
+            margin-bottom: 20px;
+        }
+
+        #deleteAccountForm {
+            background-color: rgba(91, 141, 207, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #E8E8E8;
+    max-width: 500px;
+    width: 100%; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color:white;
+        }
+
+        input[type="text"],
+        select {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #responseMessage {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 0;
+        }
+        .footer{
+    position: absolute;
+    bottom: 0;
+    left: 10;
+    z-index: 10;
+    color: white;
+}
+        </style>
+</head>
+<body>
+    <h1>Delete Account</h1>
+    <form id="deleteAccountForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="userType">User Type:</label>
+        <select id="userType" name="userType" required>
+            <option value="" disabled selected>Select user type</option>
+            <option value="farmer">Farmer</option>
+            <option value="buyer">Buyer</option>
+            <option value="agent">Agent</option>
+        </select>
+        
+        <button type="submit">Delete Account</button>
+    </form>
+    <div id="responseMessage"></div>
+</body>
+<div class="footer">&copy; 2024 Sustainable Agriculture Platform. All rights reserved.</div>
+
+<script>
+    // Handle the form submission for account deletion
+document.getElementById('deleteAccountForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    const username = document.getElementById('username').value.trim();
+    const userType = document.getElementById('userType').value;
+
+    if (!username || !userType) {
+        document.getElementById('responseMessage').textContent = 'Please fill in all fields.';
+        return;
+    }
+
+    try {
+        const response = await fetch('/delete-account', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, userType }),
+        });
+
+        if (!response.ok) {
+            if (response.status === 400) {
+                const errorData = await response.json();
+                document.getElementById('responseMessage').textContent = errorData.error;
+            } else if (response.status === 404) {
+                const errorData = await response.json();
+                document.getElementById('responseMessage').textContent = errorData.error;
+            } else {
+                document.getElementById('responseMessage').textContent = 'Error deleting account.';
+            }
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const successData = await response.json();
+        document.getElementById('responseMessage').textContent = successData.message;
+
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('responseMessage').textContent = 'Failed to delete account.';
+    }
+});
+
+</script>
+</html>

@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('https://www.pgclick.com/file_uploads/pg_photos/1000/cg1r0_1695046683.jpeg ') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 400px;
+    background-color: rgba(91, 141, 207, 0.1); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:whitesmoke;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: whitesmoke;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    background-color: rgba(91, 141, 207, 0.1); 
+    border-radius: 4px;
+    color: white;
+}
+input::placeholder{
+    color: white;
+    opacity: 1;
+}
+.login-form button {
+    width: 30%;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 75px;
+}
+#backbutton a{
+    text-decoration: none;
+    color: black;
+}
+.login-form button:hover {
+    background-color: #45a049;
+}
+
+#response {
+    margin-top: 10px;
+    text-align: center;
+    color: #333;
+}
+
+p {
+    margin-top: 10px;
+    text-align: center;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 10;
+    z-index: 10;
+    color: white;
+}
+@media (max-width:600px){
+    button{
+        margin-right: 5px;
+    }
+    
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Crop Data</title>
+    <link rel="stylesheet" href="viewcrop.css">
+</head>
+<body>
+    <div class="container">
+        <h1>View Crop Data</h1>
+        <form id="viewForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <button type="submit">View Data</button>
+        </form>
+        <div id="message"></div>
+        <h2>Crop Data</h2>
+        <table id="cropData">
+            <thead>
+                <tr>
+                    <th>Crop</th>
+                    <th>Planting Date</th>
+                    <th>Soil Health</th>
+                    <th>Irrigation</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="footer">&copy; 2024 Sustainable Agriculture Platform. All rights reserved.</div>
+
+    <script src="viewcrop.js"></script>
+</body>
+</html>

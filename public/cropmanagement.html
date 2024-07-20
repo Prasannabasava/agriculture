@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Management</title>
+    <link rel="stylesheet" href="cropmanagement.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Management</h1>
+        <form id="cropForm">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+            <div>
+                <label for="crop">Crop:</label>
+                <input type="text" id="crop" name="crop" required>
+            </div>
+            <div>
+                <label for="plantingDate">Planting Date:</label>
+                <input type="date" id="plantingDate" name="plantingDate" required>
+            </div>
+            <div>
+                <label for="soilHealth">Soil Health:</label>
+                <input type="text" id="soilHealth" name="soilHealth" required>
+            </div>
+            <div>
+                <label for="irrigation">Irrigation:</label>
+                <input type="text" id="irrigation" name="irrigation" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message"></div>
+        <h2>Crop Data</h2>
+        <table id="cropData">
+            <thead>
+                <tr>
+                    <th>Crop</th>
+                    <th>Planting Date</th>
+                    <th>Soil Health</th>
+                    <th>Irrigation</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <script src="cropmanagement.js"></script>
+    
+</body>
+</html>

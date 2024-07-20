@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Health Monitoring</title>
+    <link rel="stylesheet" href="soilhealthmonitoring.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soil Health Monitoring</h1>
+        <form id="soil-form">
+            <label for="ph">pH:</label>
+            <input type="number" id="ph" step="0.1" required><br>
+            
+            <label for="nitrogen">Nitrogen:</label>
+            <input type="number" id="nitrogen" step="0.1" required><br>
+            
+            <label for="phosphorus">Phosphorus:</label>
+            <input type="number" id="phosphorus" step="0.1" required><br>
+            
+            <label for="potassium">Potassium:</label>
+            <input type="number" id="potassium" step="0.1" required><br>
+            
+            <label for="organic">Organic Matter:</label>
+            <input type="number" id="organic" step="0.1" required><br>
+            
+            <button type="submit">Analyze Soil</button>
+        </form>
+        <div id="results">
+            <h2>Recommendations</h2>
+            <pre id="recommendations"></pre>
+        </div>
+    </div>
+    <script src="soilhealthmonitoring.js"></script>
+</body>
+</html>

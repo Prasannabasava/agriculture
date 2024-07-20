@@ -1,0 +1,38 @@
+<!-- farmerdashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="farmerdashboard.css">
+</head>
+<body>
+    <div class="header">
+        <h1 id="username-dashboard">User's Dashboard</h1>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <ul class="menu-list" id="menuList">
+        <li><a href="farmerupdateprofile.html">Update Profile</a></li>
+        <li><a href="cropmanagement.html">Crop Management</a></li>
+        <li><a href="viewcrop.html">View Crop</a></li>
+        <li><a href="soilhealthmonitoring.html">Soil Health Monitoring</a></li>
+        <li><a href="viewfertilizers.html">Related Seeds and Fertilizers</a></li>
+        <li><a href="findnearagents.html">Fertilizer Agents</a></li>
+        <li><a href="viewnearbuyerdetails.html">Near Buyers Details</a></li>
+        <li><a href="logout.html">Logout</a></li>
+    </ul>
+
+    <div class="content">
+        <p>Welcome to your dashboard, <span id="username"></span>.</p>
+    </div>
+    <div class="footer">&copy; 2024 Sustainable Agriculture Platform. All rights reserved.</div>
+    <script src="farmerdashboard.js"></script>
+</body>
+</html>

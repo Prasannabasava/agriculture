@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="agentsdashboard.css">
+</head>
+<body>
+    <div class="header">
+        <h1 id="username-dashboard">Agent's Dashboard</h1>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <ul class="menu-list" id="menuList">
+        <li><a href="agentsupdateprofile.html">Update Profile</a></li>
+        <li><a href="addfertilizer.html">Add Fertilizers</a></li>
+        <li><a href="viewallfertilizers.html">View All Fertilizers</a></li>
+        <li><a href="agentscommunication.html">Communication</a></li>
+        <li><a href="logout.html">Logout</a></li>
+    </ul>
+
+    <div class="content">
+        <p>Welcome to your dashboard, <span id="username"></span>.</p>
+    </div>
+
+    <script src="agentsdashboard.js"></script>
+</body>
+</html>

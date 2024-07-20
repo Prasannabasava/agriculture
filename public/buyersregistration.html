@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer's Registration</title>
+    <link rel="stylesheet" href="buyersregistration.css">
+</head>
+<body>
+    <div class="registration-container">
+        <form class="registration-form" action="http://localhost:3000/register_buyers" method="POST" enctype="multipart/form-data">
+            <h2>Buyer's Registration</h2>
+
+            <label for="image">Upload your Image</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="enter your name" required>
+
+            <label for="phonenumber">Phone Number</label>
+            <input type="number" id="phonenumber" name="phonenumber" placeholder="Enter your Phonenumber" maxlength="10" pattern="[0-9]{10}" required>
+            
+            <label for="companyname">Company/Factory Name</label>
+            <input type="text" id="companyname" name="companyname" placeholder="enter your company/factory name" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Enter your Address" rows="4" cols="25" required></textarea>
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="Enter your City" required>
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="Enter your State" required>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+            <button id="backbutton"><a href="index.html">Back</a></button>
+            <button type="submit">Register</button>
+
+            <div class="error-message"></div> <!-- Placeholder for error messages -->
+        </form>
+    </div>
+    <div class="footer">&copy; 2024 Sustainable Agriculture Platform. All rights reserved.</div>
+    <script src="buyersregistration.js"></script>
+</body>
+</html>

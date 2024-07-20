@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents Login</title>
+    <link rel="stylesheet" href="agentslogin.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Agents Login</h2>
+            <form id="loginForm" action="/agentslogin" method="POST">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="enter your username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="enter your password" required>
+                
+                <button id="backbutton"><a href="index.html">Back</a></button>
+                <button type="submit">Login</button>
+            </form>
+            <p id="response"></p>
+            <p>
+                Don't have an account? <a href="agentsregistration.html">Register here</a>
+            </p>
+            <p>
+                <a href="/forgot-password">Forgot password?</a>
+            </p>
+        </div>
+    </div>
+    <div class="footer">&copy; 2024 Sustainable Agriculture Platform. All rights reserved.</div>
+    <script src="agentslogin.js"></script>
+</body>
+</html>

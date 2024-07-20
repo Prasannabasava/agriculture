@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Communication</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.send-message, .view-messages {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agent Communication</h1>
+
+        <div class="view-messages">
+            <h2>View Messages</h2>
+            <input type="text" id="username" placeholder="Enter your username">
+            <button onclick="fetchMessages()">View Messages</button>
+            <ul id="messageList"></ul>
+            <p id="fetchResponse" style="color: red;"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const sender = 'YOUR_AGENT_USERNAME'; // You should dynamically set this value based on the logged-in user
+            const receiver = document.getElementById('receiver').value;
+            const message = document.getElementById('message').value;
+
+            const response = await fetch('/api/agents/send-message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sender, receiver, message })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('sendResponse').textContent = data.message;
+                document.getElementById('messageForm').reset();
+            } else {
+                document.getElementById('sendResponse').textContent = data.message;
+            }
+        });
+
+        async function fetchMessages() {
+            const username = document.getElementById('username').value;
+
+            const response = await fetch(`/api/agents/messages/${username}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                const list = document.getElementById('messageList');
+                list.innerHTML = ''; // Clear existing data
+
+                data.forEach(message => {
+                    const item = document.createElement('li');
+                    item.textContent = `${message.sent_at}: ${message.sender_username} -> ${message.message}`;
+                    list.appendChild(item);
+                });
+            } else {
+                document.getElementById('fetchResponse').textContent = data.message;
+            }
+        }
+    </script>
+</body>
+</html>

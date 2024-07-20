@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents by City</title>
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: arial,sans-serif;
+    background: url(https://www.pgclick.com/file_uploads/pg_photos/1000/cg1r0_1695046683.jpeg ) no-repeat center center fixed;  
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: whitesmoke;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: whitesmoke;
+}
+
+input {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button {
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    
+}
+td{
+    color: whitesmoke;
+}
+th {
+    background-color: #f4f4f4;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 10;
+    z-index: 10;
+    color: white;
+}
+
+    </style>
+</head>
+<body><div class="container">
+    <h1> Agents by City</h1>
+    <form id="cityForm">
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="message"></div>
+    <table id="agentsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fuiiname</th>
+                <th>City</th>
+                <th>Phonenumber</th>
+                
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cityForm = document.getElementById('cityForm');
+            const agentsTableBody = document.getElementById('agentsTable').getElementsByTagName('tbody')[0];
+            const messageDiv = document.getElementById('message');
+
+            cityForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const city = document.getElementById('city').value;
+
+                const response = await fetch(`/api/agents/${encodeURIComponent(city)}`);
+                const agents = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = '';
+                    agentsTableBody.innerHTML = ''; // Clear existing data
+
+                    if (agents.length === 0) {
+                        const row = agentsTableBody.insertRow();
+                        const cell = row.insertCell();
+                        cell.colSpan = 4;
+                        cell.textContent = 'No agents found in this city';
+                        return;
+                    }
+
+                    agents.forEach(agent => {
+                        const row = agentsTableBody.insertRow();
+                        row.insertCell().textContent = agent.id;
+                        row.insertCell().textContent = agent.fullname;
+                        row.insertCell().textContent = agent.city;
+                        row.insertCell().textContent = agent.phonenumber;
+                        // Add more cells if needed
+                    });
+                } else {
+                    messageDiv.textContent = `Error: ${agents.message}`;
+                }
+            });
+        });
+    </script>
+     <div class="footer">&copy; 2024 Sustainable Agriculture Platform. All rights reserved.</div>
+
+</body>
+</html>
